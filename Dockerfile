@@ -7,14 +7,17 @@ WORKDIR /app
 # Copy package files first for better Docker layer caching
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install all dependencies (skip prepare script initially)
+RUN npm ci --ignore-scripts
 
 # Copy source code
 COPY . .
 
 # Build the TypeScript application
 RUN npm run build
+
+# Remove dev dependencies after build
+RUN npm prune --omit=dev
 
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs && \
