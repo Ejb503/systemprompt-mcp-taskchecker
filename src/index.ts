@@ -85,18 +85,14 @@ export class TaskCheckerMCPServer {
         
         // Reset session timeout on activity
         this.setSessionTimeout(sessionId);
-      } else if (!sessionId) {
-        // Create new transport for new session (no session ID means initialization)
-        const newSessionId = randomUUID();
-        
+      } else {
+        const newSessionId = sessionId || randomUUID();
         transport = new StreamableHTTPServerTransport({
           sessionIdGenerator: () => newSessionId,
           onsessioninitialized: (sessionId: string) => {
             console.log(`🔗 Session initialized: ${sessionId}`);
             this.transports.set(sessionId, transport);
             this.servers.set(sessionId, server);
-            
-            // Set timeout for new session
             this.setSessionTimeout(sessionId);
           }
         });
@@ -105,17 +101,6 @@ export class TaskCheckerMCPServer {
         await server.connect(transport);
         
         console.log(`🆕 Created new transport for session: ${newSessionId}`);
-      } else {
-        // Invalid session ID
-        res.status(400).json({
-          jsonrpc: "2.0",
-          error: {
-            code: -32600,
-            message: "Invalid or expired session"
-          },
-          id: null
-        });
-        return;
       }
 
       // Handle the request with the appropriate transport

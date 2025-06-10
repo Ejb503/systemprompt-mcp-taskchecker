@@ -7,7 +7,7 @@ async function testMCPServer() {
   
   // Create HTTP transport
   const transport = new StreamableHTTPClientTransport(
-    new URL("http://127.0.0.1:3000/mcp")
+    new URL("https://server.smithery.ai/@Ejb503/systemprompt-mcp-taskchecker/mcp")
   );
 
   // Create client
