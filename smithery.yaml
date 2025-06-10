@@ -2,28 +2,6 @@ runtime: "container"
 
 startCommand:
   type: "http"
-  configSchema:
-    type: "object"
-    properties:
-      port:
-        type: "integer"
-        description: "Port number for the MCP server"
-        default: 3000
-        minimum: 1
-        maximum: 65535
-      nodeEnv:
-        type: "string"
-        description: "Node.js environment"
-        default: "production"
-        enum: ["development", "production", "test"]
-    additionalProperties: false
-  exampleConfig:
-    port: 3000
-    nodeEnv: "production"
-
-build:
-  context: "."
-  dockerfile: "Dockerfile"
 
 env:
   NODE_ENV: "production"
