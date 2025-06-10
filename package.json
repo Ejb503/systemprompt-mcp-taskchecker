@@ -1,5 +1,5 @@
 {
-  "name": "@systemprompt/mcp-taskchecker",
+  "name": "mcp-taskchecker",
   "version": "1.0.0",
   "description": "Model Context Protocol (MCP) server for intelligent task management, evaluation scoring, and session-based workflow tracking. Seamlessly integrates with AI assistants to provide structured task orchestration, real-time progress monitoring, and comprehensive evaluation metrics. Built by SystemPrompt.io for next-generation AI-driven productivity solutions.",
   "type": "module",
@@ -103,6 +103,9 @@
     "url": "https://systemprompt.io"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/Ejb503/systemprompt-mcp-taskchecker/issues"
   },
