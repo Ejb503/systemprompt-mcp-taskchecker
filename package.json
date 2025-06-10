@@ -102,7 +102,7 @@
     "email": "ed@tyingshoelaces.com",
     "url": "https://systemprompt.io"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Ejb503/systemprompt-mcp-taskchecker/issues"
   },
