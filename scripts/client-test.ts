@@ -5,9 +5,9 @@ import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/
 async function testMCPServer() {
   console.log("🔌 Connecting to MCP Server...");
   
-  // Create HTTP transport
+  // Create HTTP transport - test against local server (IPv4)
   const transport = new StreamableHTTPClientTransport(
-    new URL("https://server.smithery.ai/@Ejb503/systemprompt-mcp-taskchecker/mcp")
+    new URL("http://127.0.0.1:3000/mcp")
   );
 
   // Create client

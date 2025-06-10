@@ -91,14 +91,17 @@ export class TaskCheckerMCPServer {
           sessionIdGenerator: () => newSessionId,
           onsessioninitialized: (sessionId: string) => {
             console.log(`🔗 Session initialized: ${sessionId}`);
-            this.transports.set(sessionId, transport);
-            this.servers.set(sessionId, server);
             this.setSessionTimeout(sessionId);
           }
         });
 
         server = this.createMCPServer();
         await server.connect(transport);
+        
+        // Store transport and server immediately after connection
+        this.transports.set(newSessionId, transport);
+        this.servers.set(newSessionId, server);
+        this.setSessionTimeout(newSessionId);
         
         console.log(`🆕 Created new transport for session: ${newSessionId}`);
       }
